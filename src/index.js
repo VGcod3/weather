@@ -20,12 +20,22 @@ const getAndRenderCallback = (query) => {
     });
 };
 
-function cityNotFounded () {
-    $('.big-input-daddy').css({'background': '#F59189'})
-    $('.big-input-daddy').attr('placeholder', 'City did not find');
+const setLocalLastOpenedCity = (lastCity) => {
+    localStorage.setItem('lastCity', lastCity.toString());
+}
+
+localStorage.getItem('lastCity') ? getAndRenderCallback(localStorage.getItem('lastCity'))
+   : getAndRenderCallback('Moscow');
+
+function cityNotFounded() {
+    $('.big-input-daddy').attr('readonly', 'readonly');
+    $('.big-input-daddy').css({'background': '#F59189'});
+    // $('.big-input-daddy').css({'text-align': 'center'})
+    $('.big-input-daddy').attr('placeholder', 'City not found');
     setTimeout(() => {
         $('.big-input-daddy').attr('placeholder', 'Find city');
         $('.big-input-daddy').css({'background': ''});
+        $('.big-input-daddy').removeAttr('readonly');
     }, 1300);
 }
 
@@ -41,13 +51,15 @@ $(document).ready(function() {
 
             if ($('.big-input-daddy').val().toLowerCase() === 'валера пидор') {
                 $('.big-input-daddy').css({'background': '#64c95e'});
-                setTimeout(() =>
-                {$('.big-input-daddy').css({'background': ''});
+                setTimeout(() => {
+                    $('.big-input-daddy').css({'background': ''});
                     $('.big-input-daddy').val('');
-                }, 1000)
-                return;}
+                }, 1000);
+                return;
+            }
 
             let city = $('.big-input-daddy').val();
+            setLocalLastOpenedCity(city);
             getAndRenderCallback(city);
             $('.big-input-daddy').val('');
         }
