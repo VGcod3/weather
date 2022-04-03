@@ -6,7 +6,7 @@ export function getWeather(api, severUrl, query) {
         .then(response => response.json())
         .then(result => {
                 if (result.cod === '404') {
-                        return result;
+                    return result;
                 }
 
                 error = result.cod;
@@ -30,8 +30,7 @@ function getString(number) {
 }
 
 export class Tabs {
-    constructor() {
-    }
+    constructor() {}
 
     fill(data) {
         this.fillNowTab(data);
@@ -53,7 +52,6 @@ export class Tabs {
         $('#details-sunset').html('Sunset: ' + data.sunset);
     }
 }
-
 
 export function getUrl(api, serverUrl, query) {
     return `${serverUrl}?q=${query}&appid=${api}`;

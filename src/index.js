@@ -22,25 +22,21 @@ const getAndRenderCallback = (query) => {
 
 const setLocalLastOpenedCity = (lastCity) => {
     localStorage.setItem('lastCity', lastCity.toString());
-}
+};
 
 localStorage.getItem('lastCity') ? getAndRenderCallback(localStorage.getItem('lastCity'))
-   : getAndRenderCallback('Moscow');
+    : getAndRenderCallback('Moscow');
 
 function cityNotFounded() {
     $('.big-input-daddy').attr('readonly', 'readonly');
     $('.big-input-daddy').css({'background': '#F59189'});
-    // $('.big-input-daddy').css({'text-align': 'center'})
     $('.big-input-daddy').attr('placeholder', 'City not found');
     setTimeout(() => {
         $('.big-input-daddy').attr('placeholder', 'Find city');
         $('.big-input-daddy').css({'background': ''});
         $('.big-input-daddy').removeAttr('readonly');
     }, 1300);
-}
-
-// Привязывает аргументы вызова к функции и ее можно вызывать без необходимости добавлять аргументы
-// query() vs getWeather(CONFIG.api, CONFIG.serverURL)
+} // Привязывает аргументы вызова к функции и ее можно вызывать без необходимости добавлять аргументы
 
 $(document).ready(function() {
     favourite.init(); // навесили событие на сердечко И ВСЕ, ничего больше!!!!!
@@ -48,16 +44,6 @@ $(document).ready(function() {
 
     $('.big-input-daddy').on('keydown', event => {
         if (event.key === 'Enter') {
-
-            if ($('.big-input-daddy').val().toLowerCase() === 'валера пидор') {
-                $('.big-input-daddy').css({'background': '#64c95e'});
-                setTimeout(() => {
-                    $('.big-input-daddy').css({'background': ''});
-                    $('.big-input-daddy').val('');
-                }, 1000);
-                return;
-            }
-
             let city = $('.big-input-daddy').val();
             setLocalLastOpenedCity(city);
             getAndRenderCallback(city);

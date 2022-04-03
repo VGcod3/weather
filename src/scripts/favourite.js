@@ -53,7 +53,7 @@ export default class Favourite {
             const city = $(`<h3 class="${value}">${value}</h3>`);
             city.on('click', (_) => {
                 this.callback(value);
-                this.setLocalLastOpenedCity(value)
+                this.setLocalLastOpenedCity(value);
             });
 
             $(this.container).append(city);

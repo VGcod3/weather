@@ -1,14 +1,14 @@
 @use 'fonts';
 @import "~bootstrap/scss/bootstrap";
 
-*
-{
+* {
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-                                          // ================== ОСНОВА  (ЭТО БАЗА, BASED) ================== \\
+
+// ================== ОСНОВА  (ЭТО БАЗА, BASED) ================== \\
 body {
   background: #fff;
   font-family: Roboto;
@@ -24,10 +24,10 @@ body {
 .wrapper__inner {
   height: 100%;
   width: 100%;
- // border: 1px solid black;
+  // border: 1px solid black;
 }
 
-                                       // ================== INPUT ================== \\
+// ================== INPUT ================== \\
 
 .search {
   width: 100%;
@@ -48,7 +48,7 @@ body {
 
 .search input {
   width: 100%;
-  text-align: center;
+  text-align: left;
   outline: none;
   color: black;
   font-size: 18px;
@@ -59,7 +59,8 @@ body {
 .search input::placeholder {
   color: #696969;
 }
-                                      // ================== ПОЛЕ С ТРЕМЯ БАРАМИ ================== \\
+
+// ================== ПОЛЕ С ТРЕМЯ БАРАМИ ================== \\
 .information-wrapper {
   display: flex;
 }
@@ -75,18 +76,18 @@ body {
   flex-basis: 50%;
 }
 
-                                            // ================== 1/3 ================== \\
+// ================== 1/3 ================== \\
 
 .temp {
   font-size: 70px;
   line-height: 82px;
-  margin-top:20px;
+  margin-top: 20px;
   margin-left: 23px;
   margin-bottom: 40px;
 }
 
 .cloud {
- //  background: url("../img/cloud.svg");
+  //  background: url("../img/cloud.svg");
   width: 78px;
   height: 59px;
   margin: 0 auto;
@@ -124,9 +125,7 @@ body {
 }
 
 
-
-                                  // ==================  2/3 ================== \\
-
+// ==================  2/3 ================== \\
 
 
 .details {
@@ -146,7 +145,8 @@ body {
   gap: 5px;
   margin-left: 15px;
 }
-                                  // ====================  3/3 ======================= \\
+
+// ====================  3/3 ======================= \\
 
 .forecast {
   height: 90%;
@@ -156,7 +156,7 @@ body {
   font-size: 24px;
   margin-top: 33px;
   margin-left: 18px;
-  margin-bottom:20px ;
+  margin-bottom: 20px;
 }
 
 .box {
@@ -200,7 +200,7 @@ body {
   gap: 70px;
 }
 
-.forecast-temperature h3{
+.forecast-temperature h3 {
   font-size: 18px;
   margin: 0;
 }
@@ -220,7 +220,7 @@ body {
   margin: 0;
 }
 
-                                  // ================== НАСТРОЙКА ТАБОВ ================== \\
+// ================== НАСТРОЙКА ТАБОВ ================== \\
 
 .tab {
   opacity: 0;
@@ -240,12 +240,12 @@ body {
   background: white;
   flex-basis: 33.33%;
   text-align: center;
-  font-size: 18px ;
+  font-size: 18px;
   padding: 12px 0px;
   border: 1px solid black;
   border-bottom: none;
   border-left: none;
-  border-right:none ;
+  border-right: none;
   cursor: pointer;
 }
 
@@ -265,7 +265,7 @@ body {
 
 .tab-1:checked ~ .now,
 .tab-2:checked ~ .details,
-.tab-3:checked ~ .forecast{
+.tab-3:checked ~ .forecast {
   display: block;
 }
 
@@ -276,7 +276,7 @@ body {
   color: white;
 }
 
-                      // =============================== ПОЛЕ, КОТОРОЕ НЕ МЕНЯЕТСЯ  =================================== \\
+// =============================== ПОЛЕ, КОТОРОЕ НЕ МЕНЯЕТСЯ  =================================== \\
 
 .added {
   width: 100%;
