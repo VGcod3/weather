@@ -1,12 +1,13 @@
 'use strict';
 import './styles/index.scss';
 import $ from 'jquery';
-import { CONFIG } from './scripts/CONSTS.js';
+import { CONFIG } from './scripts/CONFIG.js';
 import { getWeather, Tabs } from './scripts/infoblock.js';
 import Favourite from './scripts/favourite.js';
 
 const favourite = new Favourite();
 const tabs = new Tabs();
+
 
 const getAndRenderCallback = (query) => {
     getWeather(CONFIG.api, CONFIG.serverURL, query).then((data) => {
@@ -39,6 +40,7 @@ function cityNotFounded() {
 } // Привязывает аргументы вызова к функции и ее можно вызывать без необходимости добавлять аргументы
 
 $(document).ready(function() {
+    $('input .tab-1').checked = true;
     favourite.init(); // навесили событие на сердечко И ВСЕ, ничего больше!!!!!
     favourite.setCallback(getAndRenderCallback);
 

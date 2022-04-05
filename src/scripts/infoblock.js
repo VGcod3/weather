@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import { CONFIG, forecastBoxAppend, getMonthName } from './CONFIG';
 
 export function getWeather(api, severUrl, query) {
     let temperature, cityName, weatherImage, feelLike, weatherMain, sunrise, sunset, error;
@@ -16,17 +17,13 @@ export function getWeather(api, severUrl, query) {
                 weatherImage = (`http://openweathermap.org/img/wn/${result.weather[0].icon}@2x.png`);
                 weatherMain = result.weather[0].main;
                 let sunriseTime = new Date(result.sys.sunrise * 1000);
-                sunrise = getString(sunriseTime.getHours()) + ':' + getString(sunriseTime.getMinutes());
+                sunrise = (sunriseTime.getHours()) + ':' + getString(sunriseTime.getMinutes());
                 let sunsetTime = new Date(result.sys.sunset * 1000);
-                sunset = getString(sunsetTime.getHours()) + ':' + getString(sunsetTime.getMinutes());
+                sunset = (sunsetTime.getHours()) + ':' + getString(sunsetTime.getMinutes());
 
                 return {temperature, cityName, weatherImage, feelLike, weatherMain, sunrise, sunset};
             },
         );
-}
-
-function getString(number) {
-    return ('' + number).length < 2 ? '0' + number : '' + number;
 }
 
 export class Tabs {
@@ -35,14 +32,17 @@ export class Tabs {
     fill(data) {
         this.fillNowTab(data);
         this.fillDetailTab(data);
+        this.fillForecastTab(data)
     }
 
+    // 1 таб
     fillNowTab(data) {
         $('.temp').html(data.temperature);
         $('.city_name').html(data.cityName);
         $('.cloud img').attr('src', data.weatherImage);
     }
 
+// 2 таб
     fillDetailTab(data) {
         $('.details__city-name').html(data.cityName);
         $('#details-temp').html('Temperature: ' + data.temperature);
@@ -51,8 +51,54 @@ export class Tabs {
         $('#details-sunrise').html('Sunrise: ' + data.sunrise);
         $('#details-sunset').html('Sunset: ' + data.sunset);
     }
+
+// 3 таб сделан ура ура
+    fillForecastTab(data) {
+        $('.box').html('');
+        for (let i = 0; i < 40; i += 3) {
+            this.getForecastData(data.cityName,i).then(res => forecastBoxAppend(res));
+        }
+    }
+
+    getForecastData(city,num) {
+         return this.getLatLonUrl(city)
+                .then(data => {
+                return fetch(data).then(res => res.json())
+                    .then(result => {
+                        const timeDay = new Date(result.list[num].dt * 1000);
+                        const timeHours = new Date(result.list[num].dt * 1000);
+                        const day = (timeDay.getDate());
+                        const hours = (timeHours.getHours() + ':' + getString(timeHours.getMinutes()));
+                        const month = (getMonthName(timeDay.getMonth() + 1));
+                        const temp = (result.list[num].main.temp - 273.15).toFixed(1);
+                        const tempFeelsLike = (result.list[num].main.feels_like - 273.15).toFixed(1);
+                        const weather = result.list[num].weather[0].main;
+                        const icon = `http://openweathermap.org/img/wn/${result.list[num].weather[0].icon}@2x.png`;
+                        return {month, day, hours, temp, tempFeelsLike, weather, icon, city};
+                    })
+            },
+        );
+    }
+
+    getLatLonUrl(cityName) {
+        return this.getLatLon(cityName).then(data => {
+            return (`http://api.openweathermap.org/data/2.5/forecast?lat=${data[0]}&lon=${data[1]}&appid=${CONFIG.api}&cnt=40`);
+        });
+    }
+
+    getLatLon(city) {
+        const getLanLonApi = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${CONFIG.api}`;
+        return fetch(getLanLonApi)
+            .then(response => response.json())
+            .then(result => [result[0].lat, result[0].lon]);
+    }
 }
 
-export function getUrl(api, serverUrl, query) {
+function getUrl(api, serverUrl, query) {
     return `${serverUrl}?q=${query}&appid=${api}`;
+}
+
+function getString(number) {
+    return ('' + number).length < 2 ?
+        '0' + number : '' + number;
 }

@@ -197,10 +197,11 @@ body {
 .temp-and-image {
   display: flex;
   font-size: 18px;
-  gap: 60px;
+  gap: 30px
 }
 
 .forecast-temperature {
+  flex-basis: 50%;
   margin-top: 10px;
   h3 {
     font-size: 18px;
@@ -210,17 +211,22 @@ body {
 }
 
   .weather-img {
-
+    flex-basis: 50%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
   }
 
   .weather-img h4 {
     margin: 0;
+    font-size: 18px;
+    font-weight: 600;
   }
 
   .mini-cloud {
-    background: url("../img/mini-cloud.svg");
     height: 31px;
-    width: 31px;
+    width: 62px;
     margin: 0;
   }
 
