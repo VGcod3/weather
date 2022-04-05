@@ -4,7 +4,6 @@ export default class Favourite {
     constructor() {
         this.favouriteSet = new Set();
         this.container = $('.cities');
-        this.input = $('.big-input-daddy');
         this.favouriteBtn = $('.favourite');
         this.callback = () => {
             console.warn('Колбек не назначен, сука! Кстати, Валера пидор.');

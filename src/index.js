@@ -10,7 +10,7 @@ const tabs = new Tabs();
 
 
 const getAndRenderCallback = (query) => {
-    getWeather(CONFIG.api, CONFIG.serverURL, query).then((data) => {
+    getWeather(CONFIG.api, CONFIG.serverURL, query).then(data => {
         if (data.cod === '404') {
             cityNotFounded();
             return;

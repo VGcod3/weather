@@ -203,6 +203,7 @@ body {
 .forecast-temperature {
   flex-basis: 50%;
   margin-top: 10px;
+
   h3 {
     font-size: 18px;
     margin: 0;
@@ -210,138 +211,138 @@ body {
   }
 }
 
-  .weather-img {
-    flex-basis: 50%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-  }
+.weather-img {
+  flex-basis: 50%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
 
-  .weather-img h4 {
-    margin: 0;
-    font-size: 18px;
-    font-weight: 600;
-  }
+.weather-img h4 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
 
-  .mini-cloud {
-    height: 31px;
-    width: 62px;
-    margin: 0;
-  }
+.mini-cloud {
+  height: 31px;
+  width: 62px;
+  margin: 0;
+}
 
-  // ================== НАСТРОЙКА ТАБОВ ================== \\
+// ================== НАСТРОЙКА ТАБОВ ================== \\
 
-  .tab {
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
+.tab {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 
-  .tab-block {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 100;
-  }
+.tab-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
 
-  .tab-item {
-    background: white;
-    flex-basis: 33.33%;
-    text-align: center;
-    font-size: 18px;
-    padding: 12px 0px;
-    border: 1px solid black;
-    border-bottom: none;
-    border-left: none;
-    border-right: none;
-    cursor: pointer;
-  }
+.tab-item {
+  background: white;
+  flex-basis: 33.33%;
+  text-align: center;
+  font-size: 18px;
+  padding: 12px 0px;
+  border: 1px solid black;
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+  cursor: pointer;
+}
 
-  .tab-item:first-child {
-    border-right: 1px solid black;
-  }
+.tab-item:first-child {
+  border-right: 1px solid black;
+}
 
-  .tab-item:last-child {
-    border-left: 1px solid black;
-  }
+.tab-item:last-child {
+  border-left: 1px solid black;
+}
 
-  .now,
-  .details,
-  .forecast {
-    display: none;
-  }
+.now,
+.details,
+.forecast {
+  display: none;
+}
 
-  .tab-1:checked ~ .now,
-  .tab-2:checked ~ .details,
-  .tab-3:checked ~ .forecast {
-    display: block;
-  }
+.tab-1:checked ~ .now,
+.tab-2:checked ~ .details,
+.tab-3:checked ~ .forecast {
+  display: block;
+}
 
-  .tab-1:checked ~ .tab-block .tab-item-1,
-  .tab-2:checked ~ .tab-block .tab-item-2,
-  .tab-3:checked ~ .tab-block .tab-item-3 {
-    background: black;
-    color: white;
-  }
+.tab-1:checked ~ .tab-block .tab-item-1,
+.tab-2:checked ~ .tab-block .tab-item-2,
+.tab-3:checked ~ .tab-block .tab-item-3 {
+  background: black;
+  color: white;
+}
 
-  // =============================== ПОЛЕ, КОТОРОЕ НЕ МЕНЯЕТСЯ  =================================== \\
+// =============================== ПОЛЕ, КОТОРОЕ НЕ МЕНЯЕТСЯ  =================================== \\
 
-  .added {
-    width: 100%;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
-    flex-basis: 50%;
-    font-size: 24px;
-  }
+.added {
+  width: 100%;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  flex-basis: 50%;
+  font-size: 24px;
+}
 
-  .added-loc {
-    font-size: 24px;
-    margin-bottom: 42px;
-    margin-left: 18px;
-    margin-top: 33px;
-  }
+.added-loc {
+  font-size: 24px;
+  margin-bottom: 42px;
+  margin-left: 18px;
+  margin-top: 33px;
+}
 
-  .added-loc:after {
-    content: "";
-    display: block;
-    width: 107%;
-    height: 1px;
-    background: black;
-    position: relative;
-    left: -6.8%;
-    top: 7px;
-  }
+.added-loc:after {
+  content: "";
+  display: block;
+  width: 107%;
+  height: 1px;
+  background: black;
+  position: relative;
+  left: -6.8%;
+  top: 7px;
+}
 
-  .cities {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    font-size: 24px;
-    margin-left: 18px;
-    padding-bottom: 18px;
-    height: 298px;
-    overflow: auto;
-  }
+.cities {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 24px;
+  margin-left: 18px;
+  padding-bottom: 18px;
+  height: 298px;
+  overflow: auto;
+}
 
-  .cities h3 {
-    font-size: 24px;
-    cursor: pointer;
-    width: fit-content;
-    padding: 5px;
-    transition-duration: 0.5s;
-    border-radius: 3px;
-  }
+.cities h3 {
+  font-size: 24px;
+  cursor: pointer;
+  width: fit-content;
+  padding: 5px;
+  transition-duration: 0.5s;
+  border-radius: 3px;
+}
 
-  .cities h3:hover {
-    // background: rgba(243, 243, 189, 0.51);
-    background: black;
-    color: white;
-    border-radius: 3px;
-  }
+.cities h3:hover {
+  // background: rgba(243, 243, 189, 0.51);
+  background: black;
+  color: white;
+  border-radius: 3px;
+}
 
-  .cities h3:active {
-    background: rgba(0, 0, 0, 0.87);
-  }
+.cities h3:active {
+  background: rgba(0, 0, 0, 0.87);
+}
 
