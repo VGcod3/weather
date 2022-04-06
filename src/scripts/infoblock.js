@@ -56,26 +56,35 @@ export class Tabs {
 // 3 таб сделан ура ура
     fillForecastTab(data) {
         $('.box').html('');
-        for (let i = 0; i < 40; i += 3) {
-            this.getForecastData(data.cityName, i).then(res => forecastBoxAppend(res));
-        }
+        this.getForecastData(data.cityName).then(res => forecastBoxAppend(res));
+
     }
 
-    getForecastData(city, num) {
+    getForecastData(city) {
         return this.getLatLonUrl(city)
             .then(data => {
                     return fetch(data).then(res => res.json())
                         .then(result => {
-                            const timeDay = new Date(result.list[num].dt * 1000);
-                            const timeHours = new Date(result.list[num].dt * 1000);
-                            const day = (timeDay.getDate());
-                            const hours = (timeHours.getHours() + ':' + getString(timeHours.getMinutes()));
-                            const month = (getMonthName(timeDay.getMonth() + 1));
-                            const temp = (result.list[num].main.temp - 273.15).toFixed(1);
-                            const tempFeelsLike = (result.list[num].main.feels_like - 273.15).toFixed(1);
-                            const weather = result.list[num].weather[0].main;
-                            const icon = `http://openweathermap.org/img/wn/${result.list[num].weather[0].icon}@2x.png`;
-                            return {month, day, hours, temp, tempFeelsLike, weather, icon, city};
+                            const filteredData = [];
+                            const filteredList = result.list.filter(
+                                (value, index) => {
+                                    return index % 3 === 0;
+                                },
+                            );
+
+                            filteredList.forEach((value, index) => {
+                                const timeDay = new Date(filteredList[index].dt * 1000);
+                                const timeHours = new Date(filteredList[index].dt * 1000);
+                                const day = (timeDay.getDate());
+                                const hours = (timeHours.getHours() + ':' + getString(timeHours.getMinutes()));
+                                const month = (getMonthName(timeDay.getMonth() + 1));
+                                const temp = (filteredList[index].main.temp - 273.15).toFixed(1);
+                                const tempFeelsLike = (filteredList[index].main.feels_like - 273.15).toFixed(1);
+                                const weather = filteredList[index].weather[0].main;
+                                const icon = `http://openweathermap.org/img/wn/${filteredList[index].weather[0].icon}@2x.png`;
+                                filteredData.push({month, day, hours, temp, tempFeelsLike, weather, icon, city});
+                            });
+                            return filteredData;
                         });
                 },
             );

@@ -5,28 +5,32 @@ export const CONFIG = {
     api: 'f660a2fb1e4bad108d6160b7f58c555f',
 };
 
-export function forecastBoxItemTemplate(data) {
+export function forecastBoxItemTemplate(data, index) {
     return `<div class="box__item">
                             <div class="time">
-                                <h3 class="date">${data.day} ${data.month}</h3>
-                                <h3 class="clock">${data.hours}</h3>
+                                <h3 class="date">${data[index].day} ${data[index].month}</h3>
+                                <h3 class="clock">${data[index].hours}</h3>
                             </div>
                             <div class="temp-and-image">
                                 <div class="forecast-temperature">
-                                    <h3 class="temperature">Temperature: ${data.temp}º</h3>
-                                    <h3 class="temperature-feels">Feels like: ${data.tempFeelsLike}º</h3>
+                                    <h3 class="temperature">Temperature: ${data[index].temp}º</h3>
+                                    <h3 class="temperature-feels">Feels like: ${data[index].tempFeelsLike}º</h3>
                                 </div>
                                 <div class="weather-img">
-                                    <h4>${data.weather}</h4>
-                                    <div class="mini-cloud" style="background: url('${data.icon}') no-repeat center;background-size: cover;"></div>
+                                    <h4>${data[index].weather}</h4>
+                                    <div class="mini-cloud" style="background: url('${data[index].icon}') no-repeat center;background-size: cover;"></div>
                                 </div>
                             </div>
                         </div>`;
 }
 
 export function forecastBoxAppend(objectData) {
-    $('.forecast__city-name').html(objectData.city);
-    $('.box').append(forecastBoxItemTemplate(objectData));
+    objectData.forEach((value, i) => {
+        $('.forecast__city-name').html(objectData[i].city);
+        $('.box').append(forecastBoxItemTemplate(objectData, i));
+    });
+
+
 }
 
 export function getMonthName(number) {
