@@ -10,7 +10,7 @@ export function getWeather(api, severUrl, query) {
                     return result;
                 }
 
-                error = result.cod;
+                error = result['cod'];
                 temperature = ((result.main.temp - 273.15).toFixed(1) + '°');
                 feelLike = ((result.main.feels_like - 273.15).toFixed(1) + '°');
                 cityName = result.name;

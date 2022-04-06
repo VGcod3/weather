@@ -1,9 +1,15 @@
 import $ from 'jquery';
 
 export const CONFIG = {
+    defaultCity : 'Moscow',
     serverURL: 'http://api.openweathermap.org/data/2.5/weather',
     api: 'f660a2fb1e4bad108d6160b7f58c555f',
 };
+
+export const CONFIG_LOCAL = {
+    localPreLastCity : localStorage.getItem('preLastCity'),
+    localLastCity : localStorage.getItem('lastCity'),
+}
 
 export function forecastBoxItemTemplate(data, index) {
     return `<div class="box__item">
@@ -29,8 +35,6 @@ export function forecastBoxAppend(objectData) {
         $('.forecast__city-name').html(objectData[i].city);
         $('.box').append(forecastBoxItemTemplate(objectData, i));
     });
-
-
 }
 
 export function getMonthName(number) {
