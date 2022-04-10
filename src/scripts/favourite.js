@@ -68,7 +68,8 @@ export default class Favourite {
             this.favouriteSet.add(this.currentCity);
             $(this.container).html('');
             this.updateLocal();
-            $('.favourite').css({'color': 'red'});
+            //$('.favourite').css({'color': 'red'});
+            this.render();
         }
     } // добавляет город в любимые
 
@@ -77,7 +78,8 @@ export default class Favourite {
         $(`${this.currentCity}`).remove();
         $(this.container).html('');
         this.updateLocal();
-        $('.favourite').css({'color': 'black'});
+        //$('.favourite').css({'color': 'black'});
+        this.render();
     } // удаляет город из любимых
 
     render() {
