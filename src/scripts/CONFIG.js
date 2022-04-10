@@ -1,15 +1,15 @@
 import $ from 'jquery';
 
 export const CONFIG = {
-    defaultCity : 'Moscow',
-    serverURL: 'http://api.openweathermap.org/data/2.5/weather',
-    api: 'f660a2fb1e4bad108d6160b7f58c555f',
+    defaultCity : 'Moscow', // город по умолчачанию
+    serverURL: 'http://api.openweathermap.org/data/2.5/weather', // серверная штука
+    api: 'f660a2fb1e4bad108d6160b7f58c555f', // беслпатное апи для серверной штуки
 };
 
 export const CONFIG_LOCAL = {
     localPreLastCity : localStorage.getItem('preLastCity'),
     localLastCity : localStorage.getItem('lastCity'),
-}
+} // сокращения для localStorage, чтобы многа буков не писать
 
 export function forecastBoxItemTemplate(data, index) {
     return `<div class="box__item">
@@ -28,14 +28,14 @@ export function forecastBoxItemTemplate(data, index) {
                                 </div>
                             </div>
                         </div>`;
-}
+} // шаблон коробочки из 3 таба
 
 export function forecastBoxAppend(objectData) {
     objectData.forEach((value, i) => {
         $('.forecast__city-name').html(objectData[i].city);
         $('.box').append(forecastBoxItemTemplate(objectData, i));
     });
-}
+} // заполняет 3 таб
 
 export function getMonthName(number) {
     switch (number) {
@@ -64,4 +64,4 @@ export function getMonthName(number) {
         case 12:
             return 'December';
     }
-}
+} // костыль разработанный где-то в китае, чтобы числа конвертировать в буковы (названия месяца)

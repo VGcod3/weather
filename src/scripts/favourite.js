@@ -28,7 +28,7 @@ export default class Favourite {
                 this.deleteCity();
             }
         });
-    }
+    } // ну инициализация и инициализация, че бубнить то
 
     setCallback(callback) {
         this.callback = callback;
@@ -39,7 +39,7 @@ export default class Favourite {
     }
 
     setLocalLastOpenedCity(lastCity) {
-        localStorage.setItem('lastCity', lastCity.toString());
+        localStorage.setItem('lastCity', lastCity+'');
     }
 
     updateLocal() {
@@ -57,11 +57,11 @@ export default class Favourite {
 
             $(this.container).append(city);
         });
-    }
+    } // эта функция обновляет данные (используется, когда город добавляется в коллецию set)
 
     isAdded() {
         return this.favouriteSet.has(this.currentCity);
-    }
+    } // проверяет наличие города в списке любимых
 
     addCity() {
         if (!this.isAdded()) {
@@ -70,15 +70,15 @@ export default class Favourite {
             this.updateLocal();
             $('.favourite').css({'color': 'red'});
         }
-    }
+    } // добавляет город в любимые
 
     deleteCity() {
         this.favouriteSet.delete(this.currentCity);
-        $(`.${this.currentCity}`).remove();
+        $(`${this.currentCity}`).remove();
         $(this.container).html('');
         this.updateLocal();
         $('.favourite').css({'color': 'black'});
-    }
+    } // удаляет город из любимых
 
     render() {
         if (this.isAdded()) {
@@ -86,5 +86,5 @@ export default class Favourite {
         } else {
             $('.favourite').css({'color': 'black'});
         }
-    }
+    } //  меняет цвет кнопки (сердце)
 }
