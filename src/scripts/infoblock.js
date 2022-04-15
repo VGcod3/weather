@@ -1,5 +1,6 @@
 import $ from 'jquery';
-import { CONFIG, forecastBoxAppend, getMonthName } from './CONFIG';
+import { CONFIG, forecastBoxAppend, getMonthName, getString } from './CONFIG';
+
 
 export function getWeather(api, severUrl, query) {
     let temperature, cityName, weatherImage, feelLike, weatherMain, sunrise, sunset, error;
@@ -25,6 +26,10 @@ export function getWeather(api, severUrl, query) {
             },
         );
 } // простая функция, возвращает данные для заполнения 1 и 2 таба
+
+function getUrl(api, serverUrl, query) {
+    return `${serverUrl}?q=${query}&appid=${api}`;
+} // получает ссылку для погоды в данный момент (используется для 1 и 2 таба)
 
 export class Tabs {
     constructor() {
@@ -111,12 +116,3 @@ export class Tabs {
             .then(result => [result[0].lat, result[0].lon]);
     } // возвращает lat и lon (координаты, которые описаны в документации openWeather)
 }
-
-function getUrl(api, serverUrl, query) {
-    return `${serverUrl}?q=${query}&appid=${api}`;
-} // получает ссылку для погоды в данный момент (используется для 1 и 2 таба)
-
-function getString(number) {
-    return ('' + number).length < 2 ?
-        '0' + number : '' + number;
-} // нужно для корректного отображения времени (вместо 6:2 6:20)

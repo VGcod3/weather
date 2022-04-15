@@ -63,8 +63,8 @@ export default class App {
     } // эта функция имеет чисто визуальный хаарктер , используется для показа ошибки запроса в input
 
     setLocalLastOpenedCity(lastCity) {
-        localStorage.getItem('lastCity') ? localStorage.setItem('preLastCity', localStorage.getItem('lastCity')) :
-            console.log('первый город');
+        localStorage.getItem('lastCity') ?
+            localStorage.setItem('preLastCity', localStorage.getItem('lastCity')) : false;
         localStorage.setItem('lastCity', lastCity.toString());
 
     } //  эта функция работает с localStorage и ничего более

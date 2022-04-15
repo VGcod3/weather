@@ -1,15 +1,21 @@
 import $ from 'jquery';
 
 export const CONFIG = {
-    defaultCity : 'Moscow', // город по умолчачанию
+    defaultCity: 'Moscow', // город по умолчачанию
     serverURL: 'http://api.openweathermap.org/data/2.5/weather', // серверная штука
     api: 'f660a2fb1e4bad108d6160b7f58c555f', // беслпатное апи для серверной штуки
 };
 
 export const CONFIG_LOCAL = {
-    localPreLastCity : localStorage.getItem('preLastCity'),
-    localLastCity : localStorage.getItem('lastCity'),
-} // сокращения для localStorage, чтобы многа буков не писать
+    localPreLastCity: localStorage.getItem('preLastCity'),
+    localLastCity: localStorage.getItem('lastCity'),
+}; // сокращения для localStorage, чтобы многа буков не писать
+
+
+export function getString(number) {
+    return ('' + number).length < 2 ?
+        '0' + number : '' + number;
+} // нужно для корректного отображения времени (вместо 6:2 6:20)
 
 export function forecastBoxItemTemplate(data, index) {
     return `<div class="box__item">

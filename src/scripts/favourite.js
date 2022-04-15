@@ -39,7 +39,7 @@ export default class Favourite {
     }
 
     setLocalLastOpenedCity(lastCity) {
-        localStorage.setItem('lastCity', lastCity+'');
+        localStorage.setItem('lastCity', lastCity + '');
     }
 
     updateLocal() {

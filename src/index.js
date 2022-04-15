@@ -7,4 +7,3 @@ const app = new App();
 $(document).ready(() => {
     app.run();
 });
-
