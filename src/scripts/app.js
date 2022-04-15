@@ -8,7 +8,7 @@ const tabs = new Tabs();
 export default class App {
     constructor(props) {}
 
-    init() {
+    run() {
         this.updatePage();
         favourite.init();
         favourite.setCallback(this.getAndRenderCallback);

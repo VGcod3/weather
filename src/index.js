@@ -4,6 +4,7 @@ import $ from 'jquery';
 import App from  './scripts/app';
 const app = new App();
 
-$(document).ready(function() {
-    app.init()
+$(document).ready(() => {
+    app.run();
 });
+
