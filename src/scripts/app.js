@@ -2,17 +2,16 @@ import $ from 'jquery';
 import { getWeather, Tabs } from './infoblock';
 import { CONFIG, CONFIG_LOCAL } from './CONFIG';
 import Favourite from './favourite';
+
 const favourite = new Favourite();
 const tabs = new Tabs();
 
 export default class App {
-    constructor(props) {}
+    constructor() {
+    }
 
     run() {
-        this.updatePage();
-        favourite.init();
-        favourite.setCallback(this.getAndRenderCallback);
-
+        this.init();
         $('.big-input-daddy').on('keydown', event => {
             if (event.key === 'Enter') {
                 let city = $('.big-input-daddy').val();
@@ -21,8 +20,13 @@ export default class App {
                 $('.big-input-daddy').val('');
             }
         });
+    }
 
-    } // ну инициализация и инициализация, че бубнить то
+    init() {
+        this.updatePage();
+        favourite.init();
+        favourite.setCallback(this.getAndRenderCallback);
+    }
 
     updatePage() {
         if (!CONFIG_LOCAL.localLastCity && CONFIG_LOCAL.localPreLastCity) {
@@ -47,7 +51,7 @@ export default class App {
         });
     }  // эта функция делает запрос по городу
 
-     cityNotFounded() {
+    cityNotFounded() {
         $('.big-input-daddy').attr('readonly', 'readonly');
         $('.big-input-daddy').css({'background': '#F59189'});
         $('.big-input-daddy').attr('placeholder', 'City not found');
@@ -58,7 +62,7 @@ export default class App {
         }, 1300);
     } // эта функция имеет чисто визуальный хаарктер , используется для показа ошибки запроса в input
 
-     setLocalLastOpenedCity(lastCity) {
+    setLocalLastOpenedCity(lastCity) {
         localStorage.getItem('lastCity') ? localStorage.setItem('preLastCity', localStorage.getItem('lastCity')) :
             console.log('первый город');
         localStorage.setItem('lastCity', lastCity.toString());
